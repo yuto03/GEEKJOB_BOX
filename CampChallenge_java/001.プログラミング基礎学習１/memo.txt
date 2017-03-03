@@ -1,0 +1,8 @@
+macOS Sierra
+バージョン　10.12.3
+
+MacBook Pro (Retina, 15-inch,Mid 2015)
+プロセッサ　2.2GHz intel core i7
+メモリ　16GB 1600 MHzDDR3
+起動ディスク　Macintosh HD
+グラフィックス　Intel Iris Pro 1536 MB
