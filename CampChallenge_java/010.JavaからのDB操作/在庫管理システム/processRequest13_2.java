@@ -57,7 +57,7 @@ public class processRequest13_2 extends HttpServlet {
 //            
             db_st.executeUpdate();
             //////////////////////////////////////
-            db_st = db_con.prepareStatement("select * from ItemProfile where itemID =? ");
+            db_st = db_con.prepareStatement("select * from ItemProfiles");
 
             db_data= db_st.executeQuery();
             if(db_data.next()==true){
@@ -72,12 +72,13 @@ public class processRequest13_2 extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
             }else{
-            out.println("登録に失敗しました。");
+            
             out.println("<html>");
             out.println("<head>");
             out.println("<title>登録ページ</title>");
             out.println("</head>");
             out.println("<body>");
+            out.println("登録に失敗しました。");
             out.println("<p><a href=\"processRequest13_3\">商品一覧へ</a></p>");
             out.println("<p><a href=\"iteminfo.jsp\">商品登録ページへ</a></p>");
             out.println("</body>");
