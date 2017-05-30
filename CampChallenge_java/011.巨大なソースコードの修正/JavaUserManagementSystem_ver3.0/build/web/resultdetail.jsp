@@ -17,13 +17,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JUMSユーザー情報詳細画面</title>
     </head>
-        <%//URL id直書き　直リンク防止
-           if(udd.getUserID()!=0)
-           {
-            int setid = udd.getUserID();
-            hs.setAttribute("setid", setid);
-           }
-        %>
     <body>
         <h1>詳細情報</h1>
         <table border=1>

@@ -30,31 +30,12 @@ public class ResultDetail extends HttpServlet {
             throws ServletException, IOException {
         try{
             request.setCharacterEncoding("UTF-8");//リクエストパラメータの文字コードをUTF-8に変更
-            HttpSession session= request.getSession();
             //DTOオブジェクトにマッピング。DB専用のパラメータに変換
             UserDataDTO searchData = new UserDataDTO();            
             searchData.setUserID(Integer.parseInt(request.getParameter("id")));
-            System.out.print(searchData.getUserID()+"--------------getID--------------------");
             
-            //URL id直書き　直リンク防止
-            System.out.print(session.getAttribute("setid")+"--------------getAttribute--------------------");
-            if(session.getAttribute("setid")==null){
-                 
-            int id = Integer.parseInt(request.getParameter("id"));
-            System.out.print(id+"--------------intid--------------------");
-            session.setAttribute("setid", id);
-            }
-            int idchk = (Integer)session.getAttribute("setid");
-            System.out.print(idchk+"-----------------------チェック----------------");
-            if(idchk != searchData.getUserID() ){
-                session.removeAttribute("setid");
-                throw new Exception("不正なアクセスです");
-            }
-            
-            //session.removeAttribute("setid");
             UserDataDTO resultData = UserDataDAO .getInstance().searchByID(searchData);
             request.setAttribute("resultData", resultData);
-
             request.getRequestDispatcher("/resultdetail.jsp").forward(request, response);  
         }catch(Exception e){
             //何らかの理由で失敗したらエラーページにエラー文を渡して表示。想定は不正なアクセスとDBエラー

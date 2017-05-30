@@ -29,13 +29,6 @@ public class DeleteResult extends HttpServlet {
         HttpSession session = request.getSession();
 
         try {
-            //URLパラメーター id直書き　直リンク防止
-            int idchk = (Integer)session.getAttribute("setid");
-            int idparm = (Integer.parseInt(request.getParameter("id")));
-            if(idchk != idparm){
-            throw new Exception("不正なアクセスです");
-            }
-            session.removeAttribute("setid");
             
             UserDataBeans udb = new UserDataBeans();
             UserDataDTO userdata = new UserDataDTO();

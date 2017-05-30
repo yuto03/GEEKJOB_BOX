@@ -2,11 +2,13 @@
         import="jums.JumsHelper"
         import="jums.UserDataDTO" %>
 <%
+    /*
+    巨大なソース修正2
+    ArrayList<UserDataDTO> uddの中身がなければ該当するデータ
+    */
     JumsHelper jh = JumsHelper.getInstance();
     HttpSession hs = request.getSession();
     ArrayList<UserDataDTO> udd = (ArrayList<UserDataDTO>)request.getAttribute("resultData");
-    
-       
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,7 +22,7 @@
         <%
             if(udd.size()==0){
                 out.print("該当するデータは存在しません");
-            }
+            }  
         %>
         
             <table border=1>
@@ -45,6 +47,7 @@
         </tr>
         <%}%>
         <%}%>
+        
         </table>
          
     </body>

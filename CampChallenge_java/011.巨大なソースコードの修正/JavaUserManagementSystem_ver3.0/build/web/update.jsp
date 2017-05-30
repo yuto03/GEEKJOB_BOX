@@ -3,6 +3,9 @@
 <%@page import="jums.UserDataDTO"%>
 <%@page import="jums.JumsHelper" %>
 <%
+    /*巨大なソース修正2　
+    html requiredを設定入力がなければその場でポップアップエラー表示します。safari未対応です
+    */
     JumsHelper jh = JumsHelper.getInstance();
     UserDataDTO udd = (UserDataDTO)session.getAttribute("resultData");
     DateTime date = new DateTime(udd.getBirthday());
@@ -16,12 +19,7 @@
         <title>JUMS変更画面</title>
     </head>
     <body>
-        
-            <%//URL id直書き　直リンク防止
-                if(udd.getUserID()!=0){
-                int setid = udd.getUserID();
-                hs.setAttribute("setid", setid);
-            }%>  
+         
     <form action="UpdateResult?id=<%= udd.getUserID()%>" method="POST">
 
         名前:

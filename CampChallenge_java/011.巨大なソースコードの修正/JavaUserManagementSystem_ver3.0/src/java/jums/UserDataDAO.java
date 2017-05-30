@@ -60,13 +60,12 @@ public class UserDataDAO {
         }
 
     }
-    /*
-    *複合検索用メソッド()です
-    *HashMap.sizeに合わせ
-    *
-    *
-    *
-    */
+     /**
+     * データの複合検索処理を行う。
+     * @param ud 対応したデータを保持しているJavaBeans
+     * @throws SQLException 呼び出し元にcatchさせるためにスロー 
+     * @return 検索結果
+     */
     public ArrayList<UserDataDTO> ComplexSearch(UserDataDTO ud) throws SQLException{
         Connection con  = null;
         PreparedStatement st = null;
@@ -142,17 +141,20 @@ public class UserDataDAO {
             }
 
             }
-            }//ComplexSearch()end
-    
+            }//-----------------ComplexSearch()end-----------------------------------------
+         /**
+     * データの削除処理を行う。
+     * @param ud 対応したデータを保持しているJavaBeans
+     * @throws SQLException 呼び出し元にcatchさせるためにスロー 
+     */
     public void Delete(UserDataDTO ud)throws SQLException{
         Connection con = null;
         PreparedStatement st = null;
         try{
             con = DBManager.getConnection();
-            String sql = "DELETE FROM user_t  WHERE userID = ?";
-            
+            String sql = "DELETE FROM user_t  WHERE userID = ?"; 
             st = con.prepareStatement(sql);
-            st.setString(1, ud.getName());
+            st.setInt(1, ud.getUserID());
             st.executeUpdate();
             System.out.println("Delete completed");
         }catch(SQLException e){
@@ -163,7 +165,14 @@ public class UserDataDAO {
                 con.close();
             }
         }
-    }
+    }//-----------------Delete()end-----------------------------------------//
+    
+     /**
+     * データの更新処理を行う。
+     * @param ud 対応したデータを保持しているJavaBeans
+     * @throws SQLException 呼び出し元にcatchさせるためにスロー 
+     * @return 更新結果
+     */
     public UserDataDTO UpDate(UserDataDTO ud) throws SQLException{
         Connection con  = null;
         PreparedStatement st = null;
@@ -182,7 +191,8 @@ public class UserDataDAO {
             st.setInt(7, ud.getUserID());
             
             st.executeUpdate();
-            st = con.prepareStatement("select * from user_t ");
+            st = con.prepareStatement("select * from user_t WHERE userID = ?");
+            st.setInt(1, ud.getUserID());
             ResultSet rs = st.executeQuery();
             rs.next();
             UserDataDTO resultUd = new UserDataDTO();
@@ -208,7 +218,8 @@ public class UserDataDAO {
             }
 
             }
-    }
+    }//-----------------Update()end-----------------------------------------//
+    
     /**
      * データの検索処理を行う。
      * @param ud 対応したデータを保持しているJavaBeans

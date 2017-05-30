@@ -50,7 +50,7 @@ public class InsertResult extends HttpServlet {
             
             //成功したのでセッションの値を削除
             session.removeAttribute("udb");
-            //------------------------invalidate()->removeAttribute(); -5/12-------------
+            //------------------------invalidate()->removeAttribute(); 
             //結果画面での表示用に入力パラメータ―をリクエストパラメータとして保持
             request.setAttribute("udb", udb);
             request.getRequestDispatcher("/insertresult.jsp").forward(request, response);

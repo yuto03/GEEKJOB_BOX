@@ -35,13 +35,7 @@ public class UpdateResult extends HttpServlet {
             if(accesschk ==null || (Integer)session.getAttribute("ac")!=Integer.parseInt(accesschk)){
                 throw new Exception("不正なアクセスです");
             }
-            //URL id直書き　直リンク防止
-            int idchk = (Integer)session.getAttribute("setid");
-            int idparm = (Integer.parseInt(request.getParameter("id")));
-            if(idchk != idparm ){
-                throw new Exception("不正なアクセスです");
-            }
-            session.removeAttribute("setid");
+            
             //更新するためupdate.jspフォームからの入力を取得して、JavaBeansに格納
             UserDataBeans udb = new UserDataBeans();
             udb.setName(request.getParameter("name"));
